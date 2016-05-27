@@ -1,0 +1,8 @@
+library(data.table)
+rt <- fread('household_power_consumption.txt', na.strings = '?')
+rt$Date <- as.Date(rt$Date, "%d/%m/%Y")
+nrt <- subset(rt, Date == "2007-02-01" | Date == "2007-02-02")
+rm(rt)
+png("plot1.png", width = 480, height = 480)
+hist(nrt$Global_active_power, col='red', main="Global Active Power", xlab="Globle Active Power (killowatts)")
+dev.off()
